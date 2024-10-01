@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from '../components/moleculs/Navbar'
 import Footer from '../components/moleculs/Footer'
 
-type MainLayoutProps = {
+type ClientLayoutProps = {
   children: React.ReactNode
 }
-const MainLayout = ({ children }: MainLayoutProps) => {
+const ClientLayout = ({ children }: ClientLayoutProps) => {
   return (
     <>
       <Navbar />
@@ -15,4 +15,4 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   )
 }
 
-export default MainLayout
+export default ClientLayout
