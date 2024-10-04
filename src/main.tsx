@@ -9,6 +9,7 @@ import './index.css'
 
 // Import HOC
 import MiddlewareAuth from '../src/hoc/MiddlewareAuth'
+import AdminLayout from './container/AdminLayout'
 
 // Import halaman dengan lazy loading
 const ClientDashboard = lazy(() => import('../src/pages/client/home'))
@@ -30,11 +31,11 @@ const app = createBrowserRouter([
   {
     path: '/admin',
     element: (
-      <MainLayout>
+      <AdminLayout>
         <MiddlewareAuth allowedRoles={'admin'}>
           <AdminDashboard />
         </MiddlewareAuth>
-      </MainLayout>
+      </AdminLayout>
     )
     // children: [
     //   {
