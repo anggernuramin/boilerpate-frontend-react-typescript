@@ -3,33 +3,37 @@ import * as React from 'react'
 import { Suspense, lazy } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainLayout from './container/MainLayout'
-import Skeleton from './components/atoms/Skeleton'
+import Skeleton from './components/Skeleton'
 import './index.css'
 
 // Import HOC
 import MiddlewareAuth from '../src/hoc/MiddlewareAuth'
 import AdminLayout from './container/AdminLayout'
+import ClientLayout from './container/ClientLayout'
 
-// Import halaman dengan lazy loading
-const ClientDashboard = lazy(() => import('../src/pages/client/home'))
-const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 const LoginPage = lazy(() => import('./pages/auth/Login'))
+
+// Import halaman admin dengan lazy loading
+const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
+const AdminCategories = lazy(() => import('../src/pages/admin/categories'))
+
+// Import halaman client dengan lazy loading
+const ClientDashboard = lazy(() => import('../src/pages/client/home'))
 
 // Konfigurasi routing dengan role-based access
 const app = createBrowserRouter([
   {
     path: '/',
     element: (
-      <MainLayout>
+      <ClientLayout>
         <MiddlewareAuth allowedRoles={'client'}>
           <ClientDashboard />
         </MiddlewareAuth>
-      </MainLayout>
+      </ClientLayout>
     )
   },
   {
-    path: '/admin',
+    path: '/dashboard',
     element: (
       <AdminLayout>
         <MiddlewareAuth allowedRoles={'admin'}>
@@ -39,14 +43,24 @@ const app = createBrowserRouter([
     )
     // children: [
     //   {
-    //     path: 'keahlian', // Sub-route untuk AdminKeahlian
+    //     path: 'categories', // Sub-route untuk AdminKeahlian yan tetap ditampilkan di page yang sama seperti modal
     //     element: (
-    //       <MiddlewareAuth allowedRoles={['admin']}>
-    //         <AdminKeahlian />
+    //       <MiddlewareAuth allowedRoles={'admin'}>
+    //         <AdminCategories />
     //       </MiddlewareAuth>
     //     )
-    //   },
-    // ],
+    //   }
+    // ]
+  },
+  {
+    path: '/dashboard/categories',
+    element: (
+      <AdminLayout>
+        <MiddlewareAuth allowedRoles={'admin'}>
+          <AdminCategories />
+        </MiddlewareAuth>
+      </AdminLayout>
+    )
   },
   {
     path: '/login',

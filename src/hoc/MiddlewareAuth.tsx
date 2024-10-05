@@ -12,11 +12,11 @@ const MiddlewareAuth: React.FC<Props> = ({ children, allowedRoles }) => {
   const navigate = useNavigate()
 
   // api check validation token
-  const token = authService.getAccessToken()
+  const token = authService.getAccessToken() // ganti user pakai jwt-docoe dari token
   const role = authService.getRole()
 
   useEffect(() => {
-    // Jika tidak ada token atau role arahkan ke halaman login
+    // Jika tidak ada token dan role tidak sesuai (misal bukan client) atau role arahkan ke halaman login
     if (!token || !allowedRoles.includes(role || '')) {
       navigate('/login')
     }

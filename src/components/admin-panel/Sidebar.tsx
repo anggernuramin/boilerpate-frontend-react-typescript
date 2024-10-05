@@ -5,6 +5,7 @@ import { useSidebarToogle } from '@stores/useSidebarToggle'
 import { useShallow } from 'zustand/react/shallow'
 import SidebarToggle from '@/components/admin-panel/SidebarToggle'
 import { Menu } from '@/components/admin-panel/Menu'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   const sidebar = useSidebarToogle(useShallow((state) => state))
@@ -28,7 +29,7 @@ const Sidebar = () => {
           variant="link"
           asChild
         >
-          <a href="/dashboard" className="flex items-center gap-2">
+          <Link to="/dashboard" className="flex items-center gap-2">
             <PanelsTopLeft className="w-6 h-6 mr-1" />
             <h1
               className={cn(
@@ -38,7 +39,7 @@ const Sidebar = () => {
             >
               Brand
             </h1>
-          </a>
+          </Link>
         </Button>
         <Menu isOpen={sidebar?.isOpen} />
       </div>

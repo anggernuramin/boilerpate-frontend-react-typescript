@@ -1,10 +1,10 @@
 import { Ellipsis, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { getMenuList } from '@/lib/menu-list'
+import { getMenuList } from '@/lib/menu-list-admin'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import CollapseMenuButton from '@/components/admin-panel/CollapsMenuButton'
 
 interface MenuProps {
@@ -12,6 +12,7 @@ interface MenuProps {
 }
 
 export function Menu({ isOpen }: MenuProps) {
+  console.log('🚀 ~ Menu ~ isOpen:', isOpen)
   const location = useLocation()
   const menuList = getMenuList(location.pathname)
 
@@ -52,7 +53,7 @@ export function Menu({ isOpen }: MenuProps) {
                             className="justify-start w-full h-10 mb-1"
                             asChild
                           >
-                            <a href={href}>
+                            <Link to={href}>
                               <span className={cn(isOpen === false ? '' : 'mr-4')}>
                                 <Icon size={18} />
                               </span>
@@ -64,7 +65,7 @@ export function Menu({ isOpen }: MenuProps) {
                               >
                                 {label}
                               </p>
-                            </a>
+                            </Link>
                           </Button>
                         </TooltipTrigger>
                         {isOpen === false && <TooltipContent side="right">{label}</TooltipContent>}

@@ -16,7 +16,7 @@ const MiddlewareNotAuth = (WrappedComponent: React.ComponentType<Props>) => {
     useEffect(() => {
       if (token) {
         if (role === 'admin') {
-          return navigate('/admin', { replace: true })
+          return navigate('/dashboard', { replace: true })
         } else {
           return navigate('/', { replace: true })
         }

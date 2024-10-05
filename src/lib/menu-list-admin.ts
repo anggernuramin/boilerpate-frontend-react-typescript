@@ -27,7 +27,7 @@ export function getMenuList(pathname: string): Group[] {
         {
           href: '/dashboard',
           label: 'Dashboard',
-          active: pathname.includes('/dashboard'),
+          active: pathname === '/dashboard',
           icon: LayoutGrid,
           submenus: []
         }
@@ -36,6 +36,12 @@ export function getMenuList(pathname: string): Group[] {
     {
       groupLabel: 'Contents',
       menus: [
+        {
+          href: '/dashboard/categories',
+          label: 'Categories',
+          active: pathname === '/dashboard/categories',
+          icon: Bookmark
+        },
         {
           href: '',
           label: 'Posts',
@@ -52,12 +58,7 @@ export function getMenuList(pathname: string): Group[] {
             }
           ]
         },
-        {
-          href: '/categories',
-          label: 'Categories',
-          active: pathname.includes('/categories'),
-          icon: Bookmark
-        },
+
         {
           href: '/tags',
           label: 'Tags',

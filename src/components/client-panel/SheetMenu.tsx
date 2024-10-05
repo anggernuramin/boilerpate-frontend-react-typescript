@@ -17,7 +17,7 @@ const SheetMenu = () => {
           <Button className="flex items-center justify-center pt-1 pb-2" variant="link" asChild>
             <Link to="/dashboard" className="flex items-center gap-2">
               <PanelsTopLeft className="w-6 h-6 mr-1" />
-              <SheetTitle className="text-lg font-bold">Brand</SheetTitle>
+              <SheetTitle className="text-lg font-bold">Navbar</SheetTitle>
             </Link>
           </Button>
         </SheetHeader>

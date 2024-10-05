@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { ChevronDown, Dot, LucideIcon } from 'lucide-react'
-
+import { ChevronDown, Dot } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuArrow } from '@radix-ui/react-dropdown-menu'
@@ -23,14 +22,13 @@ type Submenu = {
 }
 
 interface CollapseMenuButtonProps {
-  icon: LucideIcon
   label: string
   active: boolean
   submenus: Submenu[]
   isOpen: boolean | undefined
 }
 
-const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: CollapseMenuButtonProps) => {
+const CollapseMenuButton = ({ label, active, submenus, isOpen }: CollapseMenuButtonProps) => {
   const location = useLocation()
   const isSubmenuActive = submenus.some((submenu) =>
     submenu.active == undefined ? submenu.href === location.pathname : submenu.active
@@ -43,9 +41,6 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
         <Button variant={active ? 'secondary' : 'ghost'} className="justify-start w-full h-10">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
-              <span className="mr-4">
-                <Icon size={18} />
-              </span>
               <p
                 className={cn(
                   'max-w-[150px] truncate',
@@ -97,9 +92,6 @@ const CollapseMenuButton = ({ icon: Icon, label, active, submenus, isOpen }: Col
               <Button variant={active ? 'secondary' : 'ghost'} className="justify-start w-full h-10 mb-1">
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center">
-                    <span className={cn(isOpen === false ? '' : 'mr-4')}>
-                      <Icon size={18} />
-                    </span>
                     <p className={cn('max-w-[200px] truncate', isOpen === false ? 'opacity-0' : 'opacity-100')}>
                       {label}
                     </p>

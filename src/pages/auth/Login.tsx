@@ -13,9 +13,9 @@ const LoginPage: React.FC = () => {
     const result = authService.login(username, password)
     if (result) {
       if (result.role === 'admin') {
-        navigate('/admin')
+        return navigate('/dashboard')
       } else {
-        navigate('/')
+        return navigate('/')
       }
     } else {
       setError('Username atau password salah!')
